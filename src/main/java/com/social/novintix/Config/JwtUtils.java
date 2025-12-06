@@ -7,7 +7,7 @@ import java.util.Date;
 @Component
 public class JwtUtils {
 
-    private final String secret = "mySecretKeyForTokens2024";
+    private final String secret = "mySecretKeyForTokens2024w8734ty29t87c2y5tcg29";
     private final long expiry = 60 * 60 * 1000; // 1 hour
 
     public String createToken(String username) {

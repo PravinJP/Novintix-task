@@ -1,6 +1,9 @@
 package com.social.novintix.dto;
 
+import lombok.Data;
+
+@Data
 public class LoginRequest {
-    private String name;
-    private
+    private String username;
+    private String password;
 }
