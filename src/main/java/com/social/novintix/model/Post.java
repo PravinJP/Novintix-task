@@ -6,11 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
+
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Table(name = "user_posts")
 public class Post {
 
@@ -18,12 +21,17 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postId;
 
-    @Column(nullable = false, length = 400)
-    private String message;
+    @Column(name = "text", nullable = false)
+    private String text;
 
-    private LocalDateTime createdAt;
+    private String imageUrl;
+
+    @Column(nullable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @ManyToOne
-    @JoinColumn(name = "posted_by")
+    @JoinColumn(name = "user_id")
     private User author;
+
+
 }

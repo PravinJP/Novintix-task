@@ -11,13 +11,8 @@ import lombok.NoArgsConstructor;
 public class CreatePostRequest {
 
     private String content;
+    private String imageUrl;
 
-    public String getContent() {
-        return content;
-    }
 
-    public void setContent(String text) {
-        this.content = text;
-    }
 }
 

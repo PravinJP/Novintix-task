@@ -1,12 +1,9 @@
 package com.social.novintix.Services;
 
-
-
 import com.social.novintix.dto.CreatePostRequest;
 import com.social.novintix.dto.PostResponse;
 import com.social.novintix.model.Post;
 import com.social.novintix.model.User;
-
 import com.social.novintix.repo.PostRepository;
 import com.social.novintix.repo.UserRepository;
 import org.springframework.stereotype.Service;
@@ -31,14 +28,16 @@ public class PostService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         Post p = new Post();
-        p.setMessage(req.getContent());
+        p.setText(req.getContent());
+        p.setImageUrl(req.getImageUrl());
         p.setAuthor(author);
 
         Post saved = postRepo.save(p);
 
         return new PostResponse(
                 saved.getPostId(),
-                saved.getMessage(),
+                saved.getText(),
+                saved.getImageUrl(),
                 author.getDisplayName(),
                 saved.getCreatedAt()
         );
@@ -49,11 +48,11 @@ public class PostService {
                 .stream()
                 .map(p -> new PostResponse(
                         p.getPostId(),
-                        p.getMessage(),
+                        p.getText(),
+                        p.getImageUrl(),
                         p.getAuthor().getDisplayName(),
                         p.getCreatedAt()
                 ))
                 .collect(Collectors.toList());
     }
 }
-
